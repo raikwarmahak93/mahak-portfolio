@@ -2,337 +2,1671 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mahak | Frontend Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Mahak | Frontend Developer</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #08080c;
+    color: #ffffff;
+    line-height: 1.6;
+    transition: 0.4s;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(8, 8, 12, 0.88);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid #24242c;
+}
+
+nav {
+    max-width: 1150px;
+    margin: auto;
+
+    padding: 18px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #8b5cf6;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #cccccc;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8b5cf6;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.theme-btn,
+.menu-btn {
+    border: none;
+
+    background: #17171f;
+    color: white;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+.menu-btn {
+    display: none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 90vh;
+
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 80px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 60px;
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.small-title,
+.section-title {
+    color: #8b5cf6;
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 75px;
+
+    margin: 5px 0;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #8b5cf6
+    );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero h2 {
+    font-size: 30px;
+
+    color: #cccccc;
+
+    margin-bottom: 15px;
+}
+
+.hero-description {
+    color: #999999;
+
+    max-width: 550px;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(139, 92, 246, 0.35);
+}
+
+.btn-outline {
+    background: transparent;
+
+    border: 1px solid #444444;
+}
+
+.btn-outline:hover {
+    border-color: #8b5cf6;
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.hero-image {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.profile-circle {
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #3b82f6
+        );
+
+    box-shadow:
+        0 0 100px
+        rgba(139, 92, 246, 0.35);
+
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+.section {
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 100px 25px;
+
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 42px;
+
+    margin: 10px 0 20px;
+}
+
+.section-description {
+    color: #999999;
+
+    max-width: 700px;
+
+    margin: auto;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-box {
+    margin-top: 40px;
+
+    padding: 40px;
+
+    background: #111118;
+
+    border: 1px solid #25252d;
+
+    border-radius: 20px;
+
+    color: #aaaaaa;
+
+    transition: 0.3s;
+}
+
+.about-box:hover {
+    border-color: #8b5cf6;
+
+    transform: translateY(-5px);
+}
+
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skills-container {
+    margin-top: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.skill-card {
+    width: 260px;
+
+    padding: 30px;
+
+    background: #111118;
+
+    border: 1px solid #25252d;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 15px 40px
+        rgba(139, 92, 246, 0.12);
+}
+
+.skill-icon {
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #8b5cf6;
+
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+    color: #888888;
+
+    margin-top: 8px;
+}
+
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+.projects-container {
+    margin-top: 45px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.project-card {
+    overflow: hidden;
+
+    text-align: left;
+
+    background: #111118;
+
+    border: 1px solid #25252d;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 15px 40px
+        rgba(139, 92, 246, 0.12);
+}
+
+.project-image {
+    height: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #181822,
+            #101015
+        );
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-content h3 {
+    font-size: 22px;
+}
+
+.project-content p {
+    color: #888888;
+
+    margin: 10px 0;
+}
+
+.project-tech {
+    color: #8b5cf6;
+
+    font-size: 13px;
+}
+
+.project-link {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.project-link:hover {
+    color: #8b5cf6;
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services-container {
+    margin-top: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.service {
+    width: 300px;
+
+    padding: 30px;
+
+    background: #111118;
+
+    border: 1px solid #25252d;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+}
+
+.service:hover {
+    transform: translateY(-8px);
+
+    border-color: #8b5cf6;
+}
+
+.service-icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.service h3 {
+    margin-bottom: 10px;
+}
+
+.service p {
+    color: #888888;
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-form {
+    max-width: 600px;
+
+    margin: 40px auto 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    border: 1px solid #292932;
+
+    background: #111118;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #8b5cf6;
+}
+
+.contact-form textarea {
+    min-height: 160px;
+
+    resize: vertical;
+}
+
+
+/* =====================================================
+   SOCIAL LINKS
+===================================================== */
+
+.social-links {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.social {
+    padding: 10px 18px;
+
+    border: 1px solid #333333;
+
+    border-radius: 8px;
+
+    color: #cccccc;
+
+    transition: 0.3s;
+}
+
+.social:hover {
+    border-color: #8b5cf6;
+
+    color: #8b5cf6;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    padding: 30px;
+
+    text-align: center;
+
+    border-top: 1px solid #222222;
+
+    color: #777777;
+}
+
+
+/* =====================================================
+   SCROLL ANIMATION
+===================================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   LIGHT MODE
+===================================================== */
+
+body.light {
+    background: #f5f5f7;
+
+    color: #111111;
+}
+
+body.light header {
+    background: rgba(255,255,255,0.90);
+
+    border-color: #dddddd;
+}
+
+body.light .nav-links a {
+    color: #444444;
+}
+
+body.light .hero h2 {
+    color: #444444;
+}
+
+body.light .hero-description,
+body.light .section-description {
+    color: #555555;
+}
+
+body.light .about-box,
+body.light .skill-card,
+body.light .project-card,
+body.light .service {
+    background: #ffffff;
+
+    border-color: #dddddd;
+}
+
+body.light .skill-card p,
+body.light .project-content p,
+body.light .service p,
+body.light .about-box {
+    color: #666666;
+}
+
+body.light .contact-form input,
+body.light .contact-form textarea {
+    background: #ffffff;
+
+    color: #111111;
+
+    border-color: #dddddd;
+}
+
+body.light .theme-btn,
+body.light .menu-btn {
+    background: #eeeeee;
+
+    color: #111111;
+}
+
+body.light footer {
+    border-color: #dddddd;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .hero {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding-top: 60px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+    .projects-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding-top: 20px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding: 70px 20px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .profile-circle {
+        width: 210px;
+
+        height: 210px;
+
+        font-size: 75px;
+    }
+
+    .section {
+        padding: 70px 20px;
+    }
+
+    .section h2 {
+        font-size: 32px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-box {
+        padding: 25px;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-    <!-- NAVBAR -->
 
-    <header>
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
-        <nav>
+<header>
 
-            <div class="logo">
-                Mahak<span>.</span>
-            </div>
+<nav>
 
-            <ul class="nav-links">
+<div class="logo">
+    Mahak<span>.</span>
+</div>
 
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
 
-            </ul>
+<ul class="nav-links" id="navLinks">
 
-            <button id="themeBtn">☀️</button>
+<li>
+    <a href="#home">Home</a>
+</li>
 
-        </nav>
+<li>
+    <a href="#about">About</a>
+</li>
 
-    </header>
+<li>
+    <a href="#skills">Skills</a>
+</li>
 
+<li>
+    <a href="#projects">Projects</a>
+</li>
 
-    <!-- HERO -->
+<li>
+    <a href="#services">Services</a>
+</li>
 
-    <section id="home" class="hero">
+<li>
+    <a href="#contact">Contact</a>
+</li>
 
-        <div class="hero-text">
+</ul>
 
-            <p class="small-title">
-                HELLO, I'M
-            </p>
 
-            <h1>
-                Mahak
-            </h1>
+<div class="nav-buttons">
 
-            <h2>
-                Frontend Developer
-            </h2>
+<button
+    class="theme-btn"
+    id="themeBtn"
+    aria-label="Change theme">
 
-            <p>
-                I create modern, responsive and attractive
-                websites using HTML, CSS and JavaScript.
-            </p>
+    ☀️
 
-            <div class="hero-buttons">
+</button>
 
-                <a href="#projects" class="btn">
-                    View Projects
-                </a>
 
-                <a href="#contact" class="btn outline">
-                    Contact Me
-                </a>
+<button
+    class="menu-btn"
+    id="menuBtn"
+    aria-label="Open menu">
 
-            </div>
+    ☰
 
-        </div>
+</button>
 
+</div>
 
-        <div class="hero-image">
+</nav>
 
-            <div class="profile-circle">
-                👩‍💻
-            </div>
+</header>
 
-        </div>
 
-    </section>
 
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-    <!-- ABOUT -->
+<section
+    class="hero"
+    id="home">
 
-    <section id="about" class="section">
 
-        <p class="section-title">
-            ABOUT ME
-        </p>
+<div class="hero-text reveal">
 
-        <h2>
-            Turning Ideas Into Websites
-        </h2>
+<p class="small-title">
+    HELLO, I'M
+</p>
 
-        <p class="about-text">
+<h1>
+    Mahak
+</h1>
 
-            I am a frontend developer passionate about
-            designing clean, modern and user-friendly websites.
+<h2>
+    Frontend Developer
+</h2>
 
-            I enjoy turning ideas into beautiful digital
-            experiences using HTML, CSS and JavaScript.
+<p class="hero-description">
 
-        </p>
+I create modern, responsive and
+beautiful websites using HTML,
+CSS and JavaScript.
 
-    </section>
+</p>
 
 
-    <!-- SKILLS -->
+<div class="hero-buttons">
 
-    <section id="skills" class="section">
+<a
+    href="#projects"
+    class="btn">
 
-        <p class="section-title">
-            MY SKILLS
-        </p>
+    View Projects
 
-        <h2>
-            Technologies I Use
-        </h2>
+</a>
 
 
-        <div class="skills-container">
+<a
+    href="#contact"
+    class="btn btn-outline">
 
-            <div class="skill-card">
+    Contact Me
 
-                <div class="skill-icon">
-                    HTML
-                </div>
+</a>
 
-                <h3>HTML</h3>
+</div>
 
-                <p>
-                    Creating clean website structures.
-                </p>
+</div>
 
-            </div>
 
 
-            <div class="skill-card">
+<div class="hero-image reveal">
 
-                <div class="skill-icon">
-                    CSS
-                </div>
+<div class="profile-circle">
+    👩‍💻
+</div>
 
-                <h3>CSS</h3>
+</div>
 
-                <p>
-                    Designing beautiful responsive layouts.
-                </p>
 
-            </div>
+</section>
 
 
-            <div class="skill-card">
 
-                <div class="skill-icon">
-                    JS
-                </div>
+<!-- =====================================================
+     ABOUT
+===================================================== -->
 
-                <h3>JavaScript</h3>
+<section
+    class="section reveal"
+    id="about">
 
-                <p>
-                    Adding interaction and functionality.
-                </p>
+<p class="section-title">
+    ABOUT ME
+</p>
 
-            </div>
+<h2>
+    Turning Ideas Into Websites
+</h2>
 
-        </div>
 
-    </section>
+<div class="about-box">
 
+<p>
 
-    <!-- PROJECTS -->
+I am a frontend developer passionate
+about creating modern, clean and
+user-friendly websites.
 
-    <section id="projects" class="section">
+I enjoy converting ideas into
+beautiful digital experiences using
+HTML, CSS and JavaScript.
 
-        <p class="section-title">
-            MY WORK
-        </p>
+My goal is to build websites that
+look professional, work smoothly
+and provide an excellent user
+experience.
 
-        <h2>
-            Featured Projects
-        </h2>
+</p>
 
+</div>
 
-        <div class="projects-container">
+</section>
 
 
-            <div class="project-card">
 
-                <div class="project-image">
-                    🛒
-                </div>
+<!-- =====================================================
+     SKILLS
+===================================================== -->
 
-                <div class="project-content">
+<section
+    class="section reveal"
+    id="skills">
 
-                    <h3>
-                        Electronic Store
-                    </h3>
+<p class="section-title">
+    MY SKILLS
+</p>
 
-                    <p>
-                        A modern product catalogue website
-                        for an electronic store.
-                    </p>
+<h2>
+    Technologies I Use
+</h2>
 
-                    <span>
-                        HTML • CSS • JavaScript
-                    </span>
 
-                </div>
+<div class="skills-container">
 
-            </div>
 
+<div class="skill-card">
 
-            <div class="project-card">
+<div class="skill-icon">
+    HTML
+</div>
 
-                <div class="project-image">
-                    💼
-                </div>
+<h3>
+    HTML5
+</h3>
 
-                <div class="project-content">
+<p>
+    Building clean and structured
+    website layouts.
+</p>
 
-                    <h3>
-                        Business Website
-                    </h3>
+</div>
 
-                    <p>
-                        A professional website designed
-                        for a small business.
-                    </p>
 
-                    <span>
-                        HTML • CSS • JavaScript
-                    </span>
 
-                </div>
+<div class="skill-card">
 
-            </div>
+<div class="skill-icon">
+    CSS
+</div>
 
+<h3>
+    CSS3
+</h3>
 
-            <div class="project-card">
+<p>
+    Creating beautiful and responsive
+    designs.
+</p>
 
-                <div class="project-image">
-                    🎨
-                </div>
+</div>
 
-                <div class="project-content">
 
-                    <h3>
-                        Portfolio Website
-                    </h3>
 
-                    <p>
-                        A modern personal portfolio website
-                        to showcase skills and projects.
-                    </p>
+<div class="skill-card">
 
-                    <span>
-                        HTML • CSS • JavaScript
-                    </span>
+<div class="skill-icon">
+    JS
+</div>
 
-                </div>
+<h3>
+    JavaScript
+</h3>
 
-            </div>
+<p>
+    Adding interaction and functionality
+    to websites.
+</p>
 
+</div>
 
-        </div>
 
-    </section>
 
+<div class="skill-card">
 
-    <!-- CONTACT -->
+<div class="skill-icon">
+    UI
+</div>
 
-    <section id="contact" class="section contact">
+<h3>
+    Responsive Design
+</h3>
 
-        <p class="section-title">
-            CONTACT
-        </p>
+<p>
+    Making websites work on mobile,
+    tablet and desktop.
+</p>
 
-        <h2>
-            Let's Work Together
-        </h2>
+</div>
 
-        <p>
-            Have a project in mind? Send me a message.
-        </p>
 
+</div>
 
-        <form id="contactForm">
+</section>
 
-            <input
-                type="text"
-                placeholder="Your Name"
-                required
-            >
 
-            <input
-                type="email"
-                placeholder="Your Email"
-                required
-            >
 
-            <textarea
-                placeholder="Your Message"
-                required
-            ></textarea>
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
 
-            <button type="submit" class="btn">
-                Send Message
-            </button>
+<section
+    class="section reveal"
+    id="projects">
 
-        </form>
+<p class="section-title">
+    MY WORK
+</p>
 
-    </section>
+<h2>
+    Featured Projects
+</h2>
 
 
-    <!-- FOOTER -->
+<div class="projects-container">
 
-    <footer>
 
-        <p>
-            © 2026 Mahak. All Rights Reserved.
-        </p>
+<!-- PROJECT 1 -->
 
-    </footer>
+<div class="project-card">
 
+<div class="project-image">
+    🛒
+</div>
 
-    <script src="script.js"></script>
+<div class="project-content">
+
+<h3>
+    Electronic Store
+</h3>
+
+<p>
+
+A professional electronic products
+catalogue website with products,
+prices and specifications.
+
+</p>
+
+<div class="project-tech">
+
+HTML • CSS • JavaScript
+
+</div>
+
+<a
+    href="#"
+    class="project-link">
+
+    View Project →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 2 -->
+
+<div class="project-card">
+
+<div class="project-image">
+    💼
+</div>
+
+<div class="project-content">
+
+<h3>
+    Business Website
+</h3>
+
+<p>
+
+A modern business website designed
+to present services and company
+information professionally.
+
+</p>
+
+<div class="project-tech">
+
+HTML • CSS • JavaScript
+
+</div>
+
+<a
+    href="#"
+    class="project-link">
+
+    View Project →
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- PROJECT 3 -->
+
+<div class="project-card">
+
+<div class="project-image">
+    🎨
+</div>
+
+<div class="project-content">
+
+<h3>
+    Personal Portfolio
+</h3>
+
+<p>
+
+A premium portfolio website for
+showcasing skills, projects and
+professional information.
+
+</p>
+
+<div class="project-tech">
+
+HTML • CSS • JavaScript
+
+</div>
+
+<a
+    href="#"
+    class="project-link">
+
+    View Project →
+
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section
+    class="section reveal"
+    id="services">
+
+<p class="section-title">
+    WHAT I DO
+</p>
+
+<h2>
+    My Services
+</h2>
+
+
+<div class="services-container">
+
+
+<div class="service">
+
+<div class="service-icon">
+    🌐
+</div>
+
+<h3>
+    Website Development
+</h3>
+
+<p>
+
+Modern websites for individuals,
+businesses and brands.
+
+</p>
+
+</div>
+
+
+
+<div class="service">
+
+<div class="service-icon">
+    📱
+</div>
+
+<h3>
+    Responsive Design
+</h3>
+
+<p>
+
+Websites optimized for mobile,
+tablet and desktop devices.
+
+</p>
+
+</div>
+
+
+
+<div class="service">
+
+<div class="service-icon">
+    ⚡
+</div>
+
+<h3>
+    Website Optimization
+</h3>
+
+<p>
+
+Clean layouts, smooth interactions
+and better user experience.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="section reveal"
+    id="contact">
+
+<p class="section-title">
+    CONTACT
+</p>
+
+<h2>
+    Let's Work Together
+</h2>
+
+<p class="section-description">
+
+Have a project in mind?
+Send me a message and let's
+create something amazing.
+
+</p>
+
+
+<form
+    class="contact-form"
+    id="contactForm">
+
+
+<input
+    type="text"
+    id="name"
+    placeholder="Your Name"
+    required>
+
+
+<input
+    type="email"
+    id="email"
+    placeholder="Your Email"
+    required>
+
+
+<textarea
+    id="message"
+    placeholder="Your Message"
+    required></textarea>
+
+
+<button
+    type="submit"
+    class="btn">
+
+    Send Message
+
+</button>
+
+
+</form>
+
+
+<div class="social-links">
+
+
+<a
+    href="https://github.com/"
+    target="_blank"
+    rel="noopener"
+    class="social">
+
+    GitHub
+
+</a>
+
+
+<a
+    href="https://www.linkedin.com/"
+    target="_blank"
+    rel="noopener"
+    class="social">
+
+    LinkedIn
+
+</a>
+
+
+<a
+    href="mailto:your@email.com"
+    class="social">
+
+    Email
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<p>
+
+© 2026 Mahak. All Rights Reserved.
+
+</p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener(
+    "click",
+    function() {
+
+        navLinks.classList.toggle("show");
+
+    }
+);
+
+
+/* Close menu after selecting a section */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+                navLinks.classList.remove("show");
+
+            }
+        );
+
+    });
+
+
+
+/* =====================================================
+   DARK / LIGHT MODE
+===================================================== */
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
+
+themeBtn.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle("light");
+
+
+        if (
+            document.body.classList.contains("light")
+        ) {
+
+            themeBtn.textContent = "🌙";
+
+        } else {
+
+            themeBtn.textContent = "☀️";
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   CONTACT FORM
+===================================================== */
+
+const contactForm =
+    document.getElementById("contactForm");
+
+
+contactForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("name").value;
+
+
+        alert(
+            "Thank you, " +
+            name +
+            "! Your message has been received."
+        );
+
+
+        contactForm.reset();
+
+    }
+);
+
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+function revealOnScroll() {
+
+    revealElements.forEach(
+        function(element) {
+
+            const windowHeight =
+                window.innerHeight;
+
+            const elementTop =
+                element
+                .getBoundingClientRect()
+                .top;
+
+
+            if (
+                elementTop <
+                windowHeight - 100
+            ) {
+
+                element.classList.add("active");
+
+            }
+
+        }
+    );
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+
+
+revealOnScroll();
+
+
+</script>
 
 </body>
 
